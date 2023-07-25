@@ -8,7 +8,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const uri = "mongodb+srv://sh08:helpme08@cluster0.jtktn7s.mongodb.net/?retryWrites=true&w=majority";
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -35,6 +35,99 @@ client.connect(err => {
             res.send(documents);
         })
     })
+
+    //--------------------------------TEST----------------------------
+
+    // app.get('/plants/type/:id1/room/:id2/height/:id3', (req, res)=>
+    // {
+    //     console.log(req.params.id1);
+    //     console.log(req.params.id2);
+    //     console.log(req.params.id3);
+    //     let types=[" ", " "];
+
+    //     const allTypes=req.params.id1.split("+");
+    //     for(let i=0;i<allTypes.length;++i) types[i]=allTypes[i];
+    //     console.log("Types : ", types);
+    //     // collection.find({"plant.categorie": type[0], "plant.categorie": type[1]})
+    //     // .toArray((err, documents)=>
+    //     // {
+    //     //     console.log(documents);
+    //     // })
+
+    // })  
+    
+    //--------------------------------TEST----------------------------
+
+    //-------------------------------INDOOR--------------------------
+
+
+    app.get('/plants/indoor', (req, res)=>
+    {
+        const cat="indoor";
+        collection.find({"plant.categorie": cat})
+        .toArray((err, documents)=>
+        {
+            res.send(documents);
+        })
+    })
+    app.get('/plants/indoor/palms', (req, res)=>
+    {
+        const cat="indoor";
+        const plantType="Palms";
+        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Palms
+        .toArray((err, documents)=>
+        {
+            res.send(documents);
+        })
+    })
+    app.get('/plants/indoor/fern', (req, res)=>
+    {
+        const cat="indoor";
+        const plantType="Fern";
+        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Fern
+        .toArray((err, documents)=>
+        {
+            res.send(documents);
+        })
+    })
+    app.get('/plants/indoor/flowering', (req, res)=>
+    {
+        const cat="indoor";
+        const plantType="Flowering";
+        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Flowering 
+        .toArray((err, documents)=>
+        {
+            res.send(documents);
+        })
+    })
+    app.get('/plants/indoor/hanging', (req, res)=>
+    {
+        const cat="indoor";
+        const plantType="Hanging";
+        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Hanging
+        .toArray((err, documents)=>
+        {
+            res.send(documents);
+        })
+    })
+    
+
+    //---------------------------------OUTDOOR-------------------------------
+
+
+    app.get('/plants/outdoor', (req, res)=>
+    {
+        const cat="outdoor";
+        collection.find({"plant.categorie": cat})
+        .toArray((err, documents)=>
+        {
+            res.send(documents);
+        })
+    })
+
+    //-------------------------------LOAD SINGLE PLANT---------------------------
+
+
     app.get('/plant/:id', (req, res)=>
     {
         // console.log(req.params.id);
@@ -45,6 +138,10 @@ client.connect(err => {
             res.send(documents[0]);
         })
     })
+
+    //----------------------------------UPDATE----------------------------
+
+
     app.patch('/update/:id', (req, res)=>
     {
         const product=req.body;

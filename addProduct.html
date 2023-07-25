@@ -89,13 +89,17 @@
                     <option>Kitchen</option>
                 </select>
         </div>
+        
         <div class="form-group col-md-3 outdoorPlantActive" >
-            <label for="inputCategorie" >Condition</label>
+            <label for="inputCategorie" >Plant type</label>
                 <select id="outdoor1" class="form-control">
                     <option selected>Choose...</option>
-                    <option>Sunnt spot</option>
-                    <option>Shady spot</option>
-                    <option>Windy spot</option>
+                    <option>Palm & tree</option>
+                    <option>Ferns</option>
+                    <option>Flowering</option>
+                    <option>Climbing</option>
+                    <option>Bamboo & grasses</option>
+                    <option>Edibles</option>
                 </select>
         </div>
         <div class="form-group col-md-3 outdoorPlantActive" >
@@ -109,16 +113,14 @@
                     <option>Doorstep</option>
                 </select>
         </div>
+       
         <div class="form-group col-md-3 outdoorPlantActive" >
-            <label for="inputCategorie" >Plant type</label>
+            <label for="inputCategorie" >Condition</label>
                 <select id="outdoor3" class="form-control">
                     <option selected>Choose...</option>
-                    <option>Palm & tree</option>
-                    <option>Ferns</option>
-                    <option>Flowering</option>
-                    <option>Climbing</option>
-                    <option>Bamboo & grasses</option>
-                    <option>Edibles</option>
+                    <option>Sunnt spot</option>
+                    <option>Shady spot</option>
+                    <option>Windy spot</option>
                 </select>
         </div>
 
@@ -290,7 +292,7 @@
             .then((response) => response.json())
             .then((data) => 
             {
-                console.log(data);
+                // console.log(data);
                 data.forEach(element => {
                     const item=document.createElement('div');
                 item.innerHTML=
@@ -298,7 +300,7 @@
                     <img src=${element.plant.image} class="card-img-top" alt="..." id="reviewImage">
                     <div class="card-body">
                     <h5 class="card-title" id="reviewtName">${element.plant.name}</h5>
-                    <small><p class="card-text" id="reviewHeight">${element.plant.height} -cm</p></small>
+                    <small><p class="card-text" id="reviewHeight">${element.plant.categorie} => ${element.plant.underCategorie[0]} => ${element.plant.underCategorie[1]}</p></small>
                     <p class="card-text" id="reviewPrice">$${element.plant.price}</p>
                     <div>
                         <button href="#top" class="btn btn-primary" onclick="editProduct('${element._id}')" >Edit</button>
@@ -330,7 +332,7 @@
         function editProduct(id)
         {
             productID=id;
-            console.log(id);
+            // console.log(id);
             document.getElementById('submitBtn').style.display="none";
             document.getElementById('updateBtn').style.display="block";
             window.scrollTo(0, 0);
@@ -405,7 +407,7 @@
                  // -------------------------------------
                     
                 })
-                console.log("-----------------------------");
+                // console.log("-----------------------------");
                 const updateBtn=document.getElementById('updateBtn');
                 updateBtn.addEventListener('click', ()=>
                 {
@@ -533,6 +535,9 @@
             }
             // console.log(plantCategorie.value);
             // console.log(underCat);
+            // const date=new date();
+
+            // console.log(date);
             const plantObj={
                 name:plantName.value,
                 height:plantHeight.value,
@@ -621,3 +626,6 @@
     
 </body>
 </html>
+
+
+<!-- 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 -->
