@@ -54,76 +54,99 @@ client.connect(err => {
     //     //     console.log(documents);
     //     // })
 
-    // })  
+    // }) 
+    app.get('/plants-:id', (req, res)=>
+    {
+        // console.log(req.params.id);
+        const cat=req.params.id;
+        const allCat=cat.split("+");
+        // console.log(allCat[0].toLowerCase(), allCat.length);
+        if(allCat.length==1)
+        {
+            collection.find({"plant.categorie": allCat[0]})
+            .toArray((err, documents)=>
+            {
+                res.send(documents);
+            })
+        }
+        else if(allCat.length==2)
+        {
+            collection.find({"plant.categorie": allCat[0], "plant.underCategorie": allCat[1][0].toUpperCase()+allCat[1].slice(1)}) //Palms
+            .toArray((err, documents)=>
+            {
+                res.send(documents);
+            })
+        }
+    }) 
     
     //--------------------------------TEST----------------------------
 
     //-------------------------------INDOOR--------------------------
 
 
-    app.get('/plants/indoor', (req, res)=>
-    {
-        const cat="indoor";
-        collection.find({"plant.categorie": cat})
-        .toArray((err, documents)=>
-        {
-            res.send(documents);
-        })
-    })
-    app.get('/plants/indoor/palms', (req, res)=>
-    {
-        const cat="indoor";
-        const plantType="Palms";
-        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Palms
-        .toArray((err, documents)=>
-        {
-            res.send(documents);
-        })
-    })
-    app.get('/plants/indoor/fern', (req, res)=>
-    {
-        const cat="indoor";
-        const plantType="Fern";
-        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Fern
-        .toArray((err, documents)=>
-        {
-            res.send(documents);
-        })
-    })
-    app.get('/plants/indoor/flowering', (req, res)=>
-    {
-        const cat="indoor";
-        const plantType="Flowering";
-        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Flowering 
-        .toArray((err, documents)=>
-        {
-            res.send(documents);
-        })
-    })
-    app.get('/plants/indoor/hanging', (req, res)=>
-    {
-        const cat="indoor";
-        const plantType="Hanging";
-        collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Hanging
-        .toArray((err, documents)=>
-        {
-            res.send(documents);
-        })
-    })
+    // app.get('/plants-indoor', (req, res)=>
+    // {
+    //     const cat="indoor";
+    //     collection.find({"plant.categorie": cat})
+    //     .toArray((err, documents)=>
+    //     {
+    //         res.send(documents);
+    //     })
+    // })
+    // app.get('/plants-indoor+palms', (req, res)=>
+    // {
+    //     const cat="indoor";
+    //     const plantType="Palms";
+    //     collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Palms
+    //     .toArray((err, documents)=>
+    //     {
+    //         res.send(documents);
+    //     })
+    // })
+    // app.get('/plants-indoor+fern', (req, res)=>
+    // {
+    //     const cat="indoor";
+    //     const plantType="Fern";
+    //     collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Fern
+    //     .toArray((err, documents)=>
+    //     {
+    //         res.send(documents);
+    //     })
+    // })
+    // app.get('/plants-indoor+flowering', (req, res)=>
+    // {
+    //     const cat="indoor";
+    //     const plantType="Flowering";
+    //     collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Flowering 
+    //     .toArray((err, documents)=>
+    //     {
+    //         res.send(documents);
+    //     })
+    // })
+    // app.get('/plants-indoor+hanging', (req, res)=>
+    // {
+    //     const cat="indoor";
+    //     const plantType="Hanging";
+    //     collection.find({"plant.categorie": cat, "plant.underCategorie": plantType}) //Hanging
+    //     .toArray((err, documents)=>
+    //     {
+    //         res.send(documents);
+    //     })
+    // })
     
 
     //---------------------------------OUTDOOR-------------------------------
 
 
-    app.get('/plants/outdoor', (req, res)=>
-    {
-        const cat="outdoor";
-        collection.find({"plant.categorie": cat})
-        .toArray((err, documents)=>
-        {
-            res.send(documents);
-        })
-    })
+    // app.get('/plants-outdoor', (req, res)=>
+    // {
+    //     const cat="outdoor";
+    //     collection.find({"plant.categorie": cat})
+    //     .toArray((err, documents)=>
+    //     {
+    //         res.send(documents);
+    //     })
+    // })
 
     //-------------------------------LOAD SINGLE PLANT---------------------------
 
