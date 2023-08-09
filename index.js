@@ -37,7 +37,6 @@ client.connect(err => {
     })
 
     //--------------------------------TEST----------------------------
-
     // app.get('/plants/type/:id1/room/:id2/height/:id3', (req, res)=>
     // {
     //     console.log(req.params.id1);
@@ -199,6 +198,41 @@ client.connect(err => {
         .then(res=>
         {
             console.log("data deleted succesfully");
+        })
+    })
+
+    //----------------------------------PROFILE----------------------------
+    const userProfile = client.db("toruchaya").collection("toruchaya_user");
+
+    app.get('/user/:uid', (req, res)=>
+    {
+        console.log(req.params.uid)
+        userProfile.find({"profile.userID": req.params.uid})
+        .toArray( (err, documents)=>
+        {
+            // console.log(documents);
+            res.send(documents);
+        })
+    })
+    app.post('/addProfile', (req, res) =>
+    {
+        // console.log("Recirved", req.body)
+        userProfile.insertOne(req.body)
+        .then(res=>
+        {
+            console.log('data added');
+        })
+    })
+    app.patch('/user/update/:uid', (req, res)=>
+    {
+        console.log(req.body.logdInUser.profile.userID);
+        userProfile.updateOne({"profile.userID": req.body.logdInUser.profile.userID},
+        {
+            $set:{"profile": req.body.logdInUser.profile}
+        })
+        .then(result=>
+        {
+            console.log("data update succesfully");
         })
     })
 });
