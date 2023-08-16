@@ -236,9 +236,32 @@ client.connect(err => {
         })
     })
 });
+//----------------------------------PROFILE----------------------------
 
+//----------------------------------Order List----------------------------
+const orderList = client.db("toruchaya").collection("toruchaya_orderList");
 
+    app.post('/addOrder', (req, res) =>
+    {
+        // console.log("Recirved", req.body)
+        orderList.insertOne(req.body)
+        .then(res=>
+        {
+            console.log('data added');
+        })
+    })
 
+    app.get('/getOrder', (req, res)=>
+    {
+        console.log(req.params.uid)
+        orderList.find()
+        .toArray( (err, documents)=>
+        {
+            // console.log(documents);
+            res.send(documents);
+        })
+    })
+//----------------------------------Order List----------------------------
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
