@@ -130,7 +130,12 @@
 
         <div class="form-group col-md-3">
             <label for="inputPrice">Price <span class="redStar">*</span></label>
-            <input type="Number" class="form-control" id="inputPrice" required oninvalid="setCustomValidity('Height is required')" 
+            <input type="Number" class="form-control" id="inputPrice" required oninvalid="setCustomValidity('price is required')" 
+            oninput="setCustomValidity('')">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputOldPrice">Old Price <span class="redStar">*</span></label>
+            <input type="Number" class="form-control" id="inputOldPrice" required oninvalid="setCustomValidity('price is required')" 
             oninput="setCustomValidity('')">
         </div>
         <div class="form-group col-md-9">
@@ -342,8 +347,9 @@
                 .then(data=>
                 {
                     const {plant}= data;
-                    const {name, height, categorie, underCategorie, price, tags, size, image, quantity, allImage}=plant;
-                    // console.log(allImage);
+                    //console.log(plant);
+                    const {name, height, categorie, underCategorie, price, oldPrice, tags, size, image, quantity, allImage}=plant;
+                    //console.log(oldPrice);
                     
                     let allTags="";
                     tags.map(tag=>allTags+=tag+" ")
@@ -353,6 +359,7 @@
                     document.getElementById('inputCategorie') .value=categorie;
                     document.getElementById('inputSize') .value=size;
                     document.getElementById('inputPrice').value=price;
+                    document.getElementById('inputOldPrice').value=oldPrice;
                     document.getElementById('gridCheck').value="";
                     document.getElementById('inputImg').value=image;         
                     document.getElementById('inputTag').value=allTags;         
@@ -415,10 +422,15 @@
                     updateBtnClicked=1;
                     const plantGridCheck=document.getElementById('gridCheck');
                     const plant=plantObject();
+
                     if(plantGridCheck.checked&&plant.name&&plant.height&&plant.price&&(plant.size!="Choose...")&&(plant.categorie!="Choose...")&&plant.image&&(plant.allImage[0]&&plant.allImage[1]&&plant.allImage[2]&&plant.allImage[3]))
                     {
-                        // console.log(productID);
                         const plant=plantObject();
+
+                        plant.lastUpdateDate=new Date().toLocaleDateString();
+                        plant.lastUpdateTime=new Date().toLocaleTimeString();
+                        
+
                         fetch(`http://localhost:3000/update/${productID}`, {
                         method: 'PATCH',
                         headers: {'Content-Type': 'application/json'},
@@ -506,6 +518,8 @@
 
             const plantSize=document.getElementById('inputSize');
             const plantPrice=document.getElementById('inputPrice');
+            const plantOldPrice=document.getElementById('inputOldPrice');
+
             const plantImg=document.getElementById('inputImg');
             const plantTag=document.getElementById('inputTag');
             const plantQuantity=document.getElementById('inputQuantity');
@@ -537,7 +551,7 @@
             // console.log(underCat);
             // const date=new date();
 
-            // console.log(date);
+            //console.log(plantOldPrice.value);
             const plantObj={
                 name:plantName.value,
                 height:plantHeight.value,
@@ -545,11 +559,13 @@
                 underCategorie:underCat,
                 size:plantSize.value,
                 price:plantPrice.value,
+                oldPrice:plantOldPrice.value,
                 quantity:plantQuantity.value,
                 image:plantImg.value,
                 allImage:allImage,
                 tags: tags
             };
+            //console.log(plantObj);
 
             return plantObj;
         }
@@ -560,6 +576,7 @@
                 document.getElementById('inputCategorie') .value="";
                 document.getElementById('inputSize') .value="";
                 document.getElementById('inputPrice').value="";
+                document.getElementById('inputOldPrice').value="";
                 document.getElementById('gridCheck').value="";
                 document.getElementById('inputImg').value="";         
                 document.getElementById('inputTag').value="";         
@@ -585,6 +602,11 @@
             
             // console.log(plantImg.value);
             const plant=plantObject();
+            plant.uploadDate=new Date().toLocaleDateString();
+            plant.uploadTime=new Date().toLocaleTimeString();
+
+            plant.lastUpdateDate=new Date().toLocaleDateString();
+            plant.lastUpdateTime=new Date().toLocaleTimeString();
             
             if(plantGridCheck.checked&&plant.name&&plant.height&&plant.price&&(plant.size!="Choose...")&&(plant.height!="Choose...")&&plant.image&&(plant.allImage[0]&&plant.allImage[1]&&plant.allImage[2]&&plant.allImage[3]))
             {

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser');
@@ -6,11 +7,11 @@ var bodyParser = require('body-parser');
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
-
+console.log(process.env.PORT, process.env.DB_USER, process.env.DB_PASS)
 
 const port = process.env.PORT || 3000;
 
-const uri = "mongodb+srv://sh08:helpme08@cluster0.jtktn7s.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jtktn7s.mongodb.net/?retryWrites=true&w=majority`;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const ObjectID=require('mongodb').ObjectId;
 
@@ -168,16 +169,16 @@ client.connect(err => {
     {
         const product=req.body;
         // console.log(req.params.id);
-        const {name, height, categorie, underCategorie, size, price, quantity, image, tags, allImage}=product.plant;
+        const {name, height, categorie, underCategorie, size, price, oldPrice, quantity, image, tags, allImage, lastUpdateDate, lastUpdateTime}=product.plant;
         // console.log(name, height, categorie, underCategorie, size, price, quantity, image, tags);
         
         collection.updateOne({_id: ObjectID(req.params.id)},
         {
-            $set:{"plant.name": name, "plant.height": height, "plant.categorie": categorie,"plant.underCategorie": underCategorie,"plant.size": size,"plant.price": price,"plant.quantity": quantity,"plant.image": image,"plant.tags": tags, "plant.allImage": allImage}
+            $set:{"plant.name": name, "plant.height": height, "plant.categorie": categorie,"plant.underCategorie": underCategorie,"plant.size": size,"plant.price": price, "plant.oldPrice": oldPrice,"plant.quantity": quantity,"plant.image": image,"plant.tags": tags, "plant.allImage": allImage, "plant.lastUpdateDate":lastUpdateDate, "plant.lastUpdateTime":lastUpdateTime}
         })
         .then(result=>
         {
-            console.log("data update succesfully");
+            console.log("plant update succesfully");
         })
     })
 
@@ -188,7 +189,7 @@ client.connect(err => {
         collection.insertOne(req.body)
         .then(res=>
         {
-            console.log('data added');
+            console.log('new plant added');
         })
     })
 
@@ -197,7 +198,7 @@ client.connect(err => {
         collection.deleteOne({_id: ObjectID(req.params.id)})
         .then(res=>
         {
-            console.log("data deleted succesfully");
+            console.log("plant deleted succesfully");
         })
     })
 
@@ -220,7 +221,7 @@ client.connect(err => {
         userProfile.insertOne(req.body)
         .then(res=>
         {
-            console.log('data added');
+            console.log('profile added');
         })
     })
     app.patch('/user/update/:uid', (req, res)=>
@@ -232,7 +233,7 @@ client.connect(err => {
         })
         .then(result=>
         {
-            console.log("data update succesfully");
+            console.log("profile data update succesfully");
         })
     })
 });
@@ -247,7 +248,7 @@ const orderList = client.db("toruchaya").collection("toruchaya_orderList");
         orderList.insertOne(req.body)
         .then(res=>
         {
-            console.log('data added');
+            console.log('new order added');
         })
     })
 
