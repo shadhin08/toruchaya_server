@@ -78,7 +78,47 @@ client.connect(err => {
             })
         }
     }) 
-    
+
+    //------------------------------------------------------
+    app.get('/search',  async (req, res)=>
+    {
+        try
+        {
+            const result=await CourseModal.aggregate(
+                [
+                    {
+                      '$search': {
+                        'index': "searchPlants",
+                        'text': {
+                          'query': req.query.t,
+                          'path': {
+                            'wildcard': "*"
+                          }
+                        }
+                      }
+                    }
+                  ]
+            )
+            console.log(result);
+        }
+        catch (err)
+        {
+            console.log("error")
+            // res.send("Error hapend....!")
+        }
+    })
+    app.get('/newPlants', (req, res)=>
+    {
+        const todaysDate=new Date().toLocaleDateString();
+        const preDate=new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toLocaleDateString()
+        res.send(preDate + todaysDate);
+        // collection.find({"plant.uploadDate":{$gte: preDate, $lt: todaysDate}})
+        // .toArray((err, documents)=>
+        // {
+        //     res.send(documents);
+        // })
+    })
+
     
     //--------------------------------TEST----------------------------
 
