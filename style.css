@@ -2,3 +2,20 @@
 {
     border: 5px solid red;
 }
+.add-sarver-upper-btn
+{
+    border: 1px solid gray;
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgb(193, 244, 191);
+    border-radius: 10px;
+}
+.ordered-profile
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card
+{
+    margin: 10px;
+}

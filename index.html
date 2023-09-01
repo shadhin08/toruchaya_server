@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./style.css">
+    <title>Add Plant</title>
+
+    <style>
+        .showOnDisplay
+        {
+            display: none;
+        }
+        .textCenter
+        {
+            text-align: center;
+        }
+        .margin10px
+        {
+            margin: 10px;
+        }
+        .indorPlantActive 
+        {
+            display: none;
+        }
+        .outdoorPlantActive
+        {
+            display: none;
+        }
+        #plantReview
+        {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px;
+        }
+        .redStar
+        {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex">
+        <div class="margin10px add-sarver-upper-btn" id="toruchaya-add-plant-btn">
+            <h1>Add Plant</h1>
+        </div>
+        <div class="margin10px add-sarver-upper-btn" id="toruchaya-ordered-plant-btn" >
+            <h1>Ordered Plant</h1>
+        </div>
+    </div>
+    <div class="toruchaya-add-plant-section" id="toruchaya-add-plant-section-id">
+        
+        
+        <form class="row g-3 margin10px">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Plant Name <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputName" placeholder="Name" required oninvalid="setCustomValidity('Name is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Plant Height <span class="redStar">*</span></label>
+                <input type="number" class="form-control" id="inputHeight" placeholder="Height" required oninvalid="setCustomValidity('Height is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="inputCategorie" >Ctaegorie <span class="redStar">*</span></label>
+                    <select id="inputCategorie" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>indoor</option>
+                        <option>outdoor</option>
+                    </select>
+            </div>
+            <div class="form-group col-md-3 indorPlantActive" >
+                <label for="inputCategorie" >Plant type</label>
+                    <select id="indoor1"class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Fern</option>
+                        <option>Palms</option>
+                        <option>Flowering</option>
+                        <option>Hanging</option>
+                    </select>
+            </div>
+            <div class="form-group col-md-3 indorPlantActive" >
+                <label for="inputCategorie" >Room</label>
+                    <select id="indoor2" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Bedroom</option>
+                        <option>Bathroom</option>
+                        <option>Corridor</option>
+                        <option>Living room</option>
+                        <option>Study</option>
+                        <option>Kitchen</option>
+                    </select>
+            </div>
+            
+            <div class="form-group col-md-3 outdoorPlantActive" >
+                <label for="inputCategorie" >Plant type</label>
+                    <select id="outdoor1" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Palm & tree</option>
+                        <option>Ferns</option>
+                        <option>Flowering</option>
+                        <option>Climbing</option>
+                        <option>Bamboo & grasses</option>
+                        <option>Edibles</option>
+                    </select>
+            </div>
+            <div class="form-group col-md-3 outdoorPlantActive" >
+                <label for="inputCategorie" >Outdoor space</label>
+                    <select id="outdoor2" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Balcony</option>
+                        <option>Windowsill</option>
+                        <option>Putio & deck</option>
+                        <option>Garden</option>
+                        <option>Doorstep</option>
+                    </select>
+            </div>
+        
+            <div class="form-group col-md-3 outdoorPlantActive" >
+                <label for="inputCategorie" >Condition</label>
+                    <select id="outdoor3" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Sunnt spot</option>
+                        <option>Shady spot</option>
+                        <option>Windy spot</option>
+                    </select>
+            </div>
+
+            <div class="form-group col-md-12"></div>
+
+            
+
+            <div class="form-group col-md-3">
+                <label for="inputPrice">Price <span class="redStar">*</span></label>
+                <input type="Number" class="form-control" id="inputPrice" required oninvalid="setCustomValidity('price is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputOldPrice">Old Price <span class="redStar">*</span></label>
+                <input type="Number" class="form-control" id="inputOldPrice" required oninvalid="setCustomValidity('price is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-9">
+                <label for="inputTag">Tags (Use space bitween tow tag) <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputTag" required oninvalid="setCustomValidity('At last one tag is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="inputSize">Size <span class="redStar">*</span></label>
+                <select id="inputSize" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>small</option>
+                    <option>medium</option>
+                    <option>large</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputImg" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputQuantity">Available Quantity <span class="redStar">*</span></label>
+                <input type="number" class="form-control" id="inputQuantity" required oninvalid="setCustomValidity('Quantity is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+
+            <!-- --------------------------------------------- -->
+
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputImg1" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputImg2" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputImg3" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path <span class="redStar">*</span></label>
+                <input type="text" class="form-control" id="inputImg4" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path </label>
+                <input type="text" class="form-control" id="inputImg5" >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path </label>
+                <input type="text" class="form-control" id="inputImg6" >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path </label>
+                <input type="text" class="form-control" id="inputImg7" >
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path </label>
+                <input type="text" class="form-control" id="inputImg8" >
+            </div>
+
+            <!-- ------------------------------------------------------------------- -->
+            <!-- <div class="form-group col-md-3">
+                <label for="inputSize">Size</label>
+                <select id="inputSize" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>small</option>
+                    <option>medium</option>
+                    <option>large</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path</label>
+                <input type="text" class="form-control" id="inputImg" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputQuantity1">Available Quantity</label>
+                <input type="text" class="form-control" id="inputQuantity1" required oninvalid="setCustomValidity('Quantity is required')" 
+                oninput="setCustomValidity('')">
+            </div> -->
+            <!-- <div class="form-group col-md-3">
+                <label for="inputSize">Size</label>
+                <select id="inputSize" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>small</option>
+                    <option>medium</option>
+                    <option>large</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputImg">Image path</label>
+                <input type="text" class="form-control" id="inputImg" required oninvalid="setCustomValidity('Image path is required')" 
+                oninput="setCustomValidity('')">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="inputQuantity1">Available Quantity</label>
+                <input type="text" class="form-control" id="inputQuantity1" required oninvalid="setCustomValidity('Quantity is required')" 
+                oninput="setCustomValidity('')">
+            </div> -->
+            <!-- ------------------------------------------------------------------- -->
+
+            <div class="form-group col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                        Check me out <span class="redStar">*</span>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-12 textCenter">
+                <input type="button" class="btn btn-primary" id="updateBtn" value="Update"/>
+                <input type="button" class="btn btn-primary" id="submitBtn" value="Submit"/>
+
+            </div>
+            <!-- <input type="button" value=""> -->
+        </form>
+        
+        
+        <div class="alert alert-success showOnDisplay" role="alert" id="inputValid">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            <strong>Success!</strong> Data send to database successfully!
+        </div>
+        <div class="alert alert-danger showOnDisplay" role="alert" id="inputInvalid">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            <strong>sorry!</strong> fell all input field (include checkbox)!
+        </div>
+        <!-- ------------------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------- -->
+        <!-- ------------------------------------------------------------------- -->
+        <!-- <button class="btn btn-primary" id="getData">Get Data</button> -->
+        
+        <div class="" id="plantReview">
+            <!-- <div class="card"  style="width: 18rem;">
+                <img src="https://i.ibb.co/5TvK8Q5/309480319-627162155751751-3058718925901695619-n-2.jpg" class="card-img-top" alt="..." id="reviewImage">
+                <div class="card-body">
+                <h5 class="card-title" id="reviewtName">Name</h5>
+                <p class="card-text" id="reviewHeight"></p><span>-cm</span>
+                <div>
+                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-primary">Delete</button>
+                </div>
+                </div> -->
+            </div>
+        
+            
+            </div>
+    </div>
+
+    <div class="toruchaya-ordered-plant-section" id="toruchaya-ordered-plant-section-id">
+        <div class="toruchaya-ordered-plants" id="toruchaya-ordered-plant-list">
+        
+        </div>
+    </div>
+    <script>
+        //-------------------changes-------------------
+
+        const orderProductBtn=document.getElementById("toruchaya-ordered-plant-btn");
+        orderProductBtn.addEventListener("click", ()=>
+        {
+            console.log("clicked");
+            document.getElementById("toruchaya-add-plant-section-id").style.display="none";
+            document.getElementById("toruchaya-ordered-plant-section-id").style.display="block";
+
+            loadOrderedProducts()
+        })
+        const addPlantBtn=document.getElementById("toruchaya-add-plant-btn");
+        addPlantBtn.addEventListener("click", ()=>
+        {
+            //console.log("clicked");
+            document.getElementById("toruchaya-add-plant-section-id").style.display="block";
+            document.getElementById("toruchaya-ordered-plant-section-id").style.display="none";
+        })
+        function loadOrderedProducts()
+        {
+            fetch('https://toruchayaserver.up.railway.app/getOrder',)
+            .then((response) => response.json())
+            .then((data) => 
+            {
+                //console.log(data);
+                data.reverse();
+                data.map(element=>
+                {
+                    //console.log(element.profileDetails);
+
+                    const orderedProduct=element.profileDetails.orderedDta;
+                    const item=document.createElement('div');
+                    item.innerHTML=
+                    `<div class="ordered-profile" id="ordered-profile-id">
+                    </div>`
+                    document.getElementById("toruchaya-ordered-plant-list").appendChild(item);
+
+                    //console.log(orderedProduct);
+                    orderedProduct.map(singleOrderedData=>
+                    {
+                        //console.log(singleOrderedData);
+                        const ordProd=document.createElement('div');
+                        ordProd.innerHTML=
+                        `<div class="card" style="width: 18rem;">
+                            <img src=${singleOrderedData.plant.image} class="card-img-top" alt="..." id="reviewImage">
+                            <div class="card-body">
+                            <h5 class="card-title" id="reviewtName">${singleOrderedData.plant.name}</h5>
+                            <small><p class="card-text" id="reviewHeight">${singleOrderedData.plant.categorie} => ${singleOrderedData.plant.underCategorie[0]} => ${singleOrderedData.plant.underCategorie[1]}</p></small>
+                            <small><p class="card-text" id="reviewHeight">${element.profileDetails.date} => ${element.profileDetails.time}</p></small>
+                            <p class="card-text" id="reviewPrice">$${singleOrderedData.plant.price}</p>
+
+                            <small><p class="card-text" id="reviewHeight">Ordered by: <br/>${element.profileDetails.name}</p></small>
+                            <small><p class="card-text" id="reviewHeight">${element.profileDetails.phone}</p></small>
+                            <small><p class="card-text" id="reviewHeight">${element.profileDetails.address}</p></small>
+                            <small><p class="card-text" id="reviewHeight">${element.profileDetails.city}</p></small>
+                            <small><p class="card-text" id="reviewHeight">${element.profileDetails.state}</p></small>
+                            
+                            <div class="m-10">
+                                <button href="#top" class="btn btn-primary">Reject</button>
+                                <button class="btn btn-primary"">Accept</button>
+                            </div>
+                        </div>`;
+                        //console.log(ordProd);
+                        document.getElementById("ordered-profile-id").appendChild(ordProd);
+                    })
+                    
+                })
+            });
+        };
+
+        //-------------------changes-------------------
+        function loadAllProducts()
+        {
+            fetch('https://toruchayaserver.up.railway.app/plants',)
+            .then((response) => response.json())
+            .then((data) => 
+            {
+                // console.log(data);
+                data.forEach(element => {
+                    const item=document.createElement('div');
+                item.innerHTML=
+                `<div class="card" style="width: 18rem;">
+                    <img src=${element.plant.image} class="card-img-top" alt="..." id="reviewImage">
+                    <div class="card-body">
+                    <h5 class="card-title" id="reviewtName">${element.plant.name}</h5>
+                    <small><p class="card-text" id="reviewHeight">${element.plant.categorie} => ${element.plant.underCategorie[0]} => ${element.plant.underCategorie[1]}</p></small>
+                    <p class="card-text" id="reviewPrice">$${element.plant.price}</p>
+                    <div>
+                        <button href="#top" class="btn btn-primary" onclick="editProduct('${element._id}')" >Edit</button>
+                        <button class="btn btn-primary" onclick="deleteProduct('${element._id}')">Delete</button>
+                    </div>
+                    </div>
+                </div>`;
+                document.getElementById('plantReview').appendChild(item);
+                });
+            });
+        };
+        function deleteProduct(id)
+        {
+            fetch(`https://toruchayaserver.up.railway.app/delete/${id}`, 
+            {
+                method: 'DELETE',
+            })
+            .then(res => {
+            return res.json()
+            }) 
+            .then(data => console.log("deleted succesfully"))
+
+            window.location.reload(true);  
+        }
+        let productID;
+        function editProduct(id)
+        {
+            productID=id;
+            // console.log(id);
+            document.getElementById('submitBtn').style.display="none";
+            document.getElementById('updateBtn').style.display="block";
+            window.scrollTo(0, 0);
+
+                fetch(`https://toruchayaserver.up.railway.app/plant/${id}`)
+                .then(res=> res.json())
+                .then(data=>
+                {
+                    const {plant}= data;
+                    //console.log(plant);
+                    const {name, height, categorie, underCategorie, price, oldPrice, tags, size, image, quantity, allImage}=plant;
+                    //console.log(oldPrice);
+                    
+                    let allTags="";
+                    tags.map(tag=>allTags+=tag+" ")
+
+                    document.getElementById('inputName').value=name;
+                    document.getElementById('inputHeight').value=height;
+                    document.getElementById('inputCategorie') .value=categorie;
+                    document.getElementById('inputSize') .value=size;
+                    document.getElementById('inputPrice').value=price;
+                    document.getElementById('inputOldPrice').value=oldPrice;
+                    document.getElementById('gridCheck').value="";
+                    document.getElementById('inputImg').value=image;         
+                    document.getElementById('inputTag').value=allTags;         
+                    document.getElementById('inputQuantity').value=quantity;
+
+                    document.getElementById('inputImg1').value=allImage[0];
+                    document.getElementById('inputImg2').value=allImage[1];
+                    document.getElementById('inputImg3').value=allImage[2];
+                    document.getElementById('inputImg4').value=allImage[3];
+
+                    document.getElementById('inputImg5').value=allImage[4];
+                    document.getElementById('inputImg6').value=allImage[5];
+                    document.getElementById('inputImg7').value=allImage[6];
+                    document.getElementById('inputImg8').value=allImage[7];
+
+                    //---------------------------------------------
+                    if(categorie==="indoor")
+                    {
+                        const element=document.getElementsByClassName("indorPlantActive");
+                        for(let i=0;i<element.length;++i)
+                        {
+                            element[i].style.display="block";
+                        }
+                        const element2=document.getElementsByClassName("outdoorPlantActive")
+                        for(let i=0;i<element2.length;++i)
+                        {
+                            element2[i].style.display="none";
+                        }
+
+                        document.getElementById('indoor1').value=underCategorie[0];
+                        document.getElementById('indoor2').value=underCategorie[1];
+                    }
+                    else
+                    {
+                        const element=document.getElementsByClassName("outdoorPlantActive");
+                        for(let i=0;i<element.length;++i)
+                        {
+                            element[i].style.display="block";
+                        }
+                        const element1=document.getElementsByClassName("indorPlantActive")
+                        for(let i=0;i<element1.length;++i)
+                        {
+                            element1[i].style.display="none";
+                        }
+                        document.getElementById('outdoor1').value=underCategorie[0];
+                        document.getElementById('outdoor2').value=underCategorie[1];
+                        document.getElementById('outdoor3').value=underCategorie[2];
+                    }
+
+                
+                //---------------------------------------------
+                 // -------------------------------------
+                    
+                })
+                // console.log("-----------------------------");
+                const updateBtn=document.getElementById('updateBtn');
+                updateBtn.addEventListener('click', ()=>
+                {
+                    // console.log(productID);
+                    updateBtnClicked=1;
+                    const plantGridCheck=document.getElementById('gridCheck');
+                    const plant=plantObject();
+
+                    if(plantGridCheck.checked&&plant.name&&plant.height&&plant.price&&(plant.size!="Choose...")&&(plant.categorie!="Choose...")&&plant.image&&(plant.allImage[0]&&plant.allImage[1]&&plant.allImage[2]&&plant.allImage[3]))
+                    {
+                        const plant=plantObject();
+
+                        plant.lastUpdateDate=new Date().toLocaleDateString();
+                        plant.lastUpdateTime=new Date().toLocaleTimeString();
+                        
+
+                        fetch(`https://toruchayaserver.up.railway.app/update/${productID}`, {
+                        method: 'PATCH',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({plant})
+                        })
+                        .then(res => res.json())
+                        .then(res => {
+                            console.log(res);
+                        })
+                        emptyAllField();
+                        window.location.reload(true); 
+
+                        document.getElementById('inputInvalid').style.display='none';
+                        document.getElementById('inputValid').style.display='block';
+                    }
+                    else
+                    {
+                        document.getElementById('inputInvalid').style.display='block';
+                        document.getElementById('inputValid').style.display='none';
+                    }
+                });
+           
+            // -------------------------------------
+        }
+        loadAllProducts();
+    // <!-- ------------------------------------------------------------------- -->
+    // <!-- ------------------------------------------------------------------- -->
+        const updateBtn=document.getElementById('updateBtn');
+        updateBtn.style.display="none";
+        
+        const plantCategorie=document.getElementById('inputCategorie');
+        plantCategorie.addEventListener('change', ()=>
+        {
+            if(plantCategorie.value==="indoor")
+            {
+                const element=document.getElementsByClassName("indorPlantActive");
+                for(let i=0;i<element.length;++i)
+                {
+                    element[i].style.display="block";
+                }
+                const element2=document.getElementsByClassName("outdoorPlantActive")
+                for(let i=0;i<element2.length;++i)
+                {
+                    element2[i].style.display="none";
+                }
+            }
+            else if(plantCategorie.value==="outdoor")
+            {
+                const element=document.getElementsByClassName("outdoorPlantActive");
+                for(let i=0;i<element.length;++i)
+                {
+                    element[i].style.display="block";
+                }
+                const element1=document.getElementsByClassName("indorPlantActive")
+                for(let i=0;i<element1.length;++i)
+                {
+                    element1[i].style.display="none";
+                }
+            }
+            else
+            {
+                const element1=document.getElementsByClassName("indorPlantActive")
+                for(let i=0;i<element1.length;++i)
+                {
+                    element1[i].style.display="none";
+                }
+                const element2=document.getElementsByClassName("outdoorPlantActive")
+                for(let i=0;i<element2.length;++i)
+                {
+                    element2[i].style.display="none";
+                }
+            }
+        })
+        const plantObject=()=>
+        {
+            const plantName=document.getElementById('inputName');
+            const plantHeight=document.getElementById('inputHeight');
+
+            const indoor1=document.getElementById('indoor1');
+            const indoor2=document.getElementById('indoor2');
+
+            const outdoor1=document.getElementById('outdoor1');
+            const outdoor2=document.getElementById('outdoor2');
+            const outdoor3=document.getElementById('outdoor3');
+
+            const plantSize=document.getElementById('inputSize');
+            const plantPrice=document.getElementById('inputPrice');
+            const plantOldPrice=document.getElementById('inputOldPrice');
+
+            const plantImg=document.getElementById('inputImg');
+            const plantTag=document.getElementById('inputTag');
+            const plantQuantity=document.getElementById('inputQuantity');
+
+            const plantImg1=document.getElementById('inputImg1').value;
+            const plantImg2=document.getElementById('inputImg2').value;
+            const plantImg3=document.getElementById('inputImg3').value;
+            const plantImg4=document.getElementById('inputImg4').value;
+
+            const plantImg5=document.getElementById('inputImg5').value;
+            const plantImg6=document.getElementById('inputImg6').value;
+            const plantImg7=document.getElementById('inputImg7').value;
+            const plantImg8=document.getElementById('inputImg8').value;
+
+            const allImage=[plantImg1, plantImg2, plantImg3, plantImg4, plantImg5, plantImg6, plantImg7, plantImg8]
+            // console.log(allImage);
+            let tags=plantTag.value.split(' ');
+            let underCat;
+            if(plantCategorie.value==='outdoor')
+            {
+                underCat=[outdoor1.value, outdoor2.value, outdoor3.value];
+                // console.log(outdoor1.value, outdoor2, outdoor3);
+            }
+            else if(plantCategorie.value==='indoor')
+            {
+                underCat=[indoor1.value, indoor2.value];
+            }
+            // console.log(plantCategorie.value);
+            // console.log(underCat);
+            // const date=new date();
+
+            //console.log(plantOldPrice.value);
+            const plantObj={
+                name:plantName.value,
+                height:plantHeight.value,
+                categorie:plantCategorie.value,
+                underCategorie:underCat,
+                size:plantSize.value,
+                price:plantPrice.value,
+                oldPrice:plantOldPrice.value,
+                quantity:plantQuantity.value,
+                image:plantImg.value,
+                allImage:allImage,
+                tags: tags
+            };
+            //console.log(plantObj);
+
+            return plantObj;
+        }
+        function emptyAllField()
+        {
+                document.getElementById('inputName').value="";
+                document.getElementById('inputHeight').value="";
+                document.getElementById('inputCategorie') .value="";
+                document.getElementById('inputSize') .value="";
+                document.getElementById('inputPrice').value="";
+                document.getElementById('inputOldPrice').value="";
+                document.getElementById('gridCheck').value="";
+                document.getElementById('inputImg').value="";         
+                document.getElementById('inputTag').value="";         
+                document.getElementById('inputQuantity').value="";
+
+                document.getElementById('inputImg1').value="";
+                document.getElementById('inputImg2').value="";
+                document.getElementById('inputImg3').value="";
+                document.getElementById('inputImg4').value="";
+
+                document.getElementById('inputImg5').value="";
+                document.getElementById('inputImg6').value="";
+                document.getElementById('inputImg7').value="";
+                document.getElementById('inputImg8').value="";
+        }
+
+        
+        
+        const submitBtn=document.getElementById('submitBtn');
+        const plantGridCheck=document.getElementById('gridCheck');
+        submitBtn.addEventListener('click', ()=>
+        {
+            
+            // console.log(plantImg.value);
+            const plant=plantObject();
+            plant.uploadDate=new Date().toLocaleDateString();
+            plant.uploadTime=new Date().toLocaleTimeString();
+
+            plant.lastUpdateDate=new Date().toLocaleDateString();
+            plant.lastUpdateTime=new Date().toLocaleTimeString();
+            
+            if(plantGridCheck.checked&&plant.name&&plant.height&&plant.price&&(plant.size!="Choose...")&&(plant.height!="Choose...")&&plant.image&&(plant.allImage[0]&&plant.allImage[1]&&plant.allImage[2]&&plant.allImage[3]))
+            {
+                // console.log(plant);
+                fetch('https://toruchayaserver.up.railway.app/addProduct', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({plant})
+                }).then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                })
+                .catch((error) => 
+                {
+                    console.log(error)
+                    document.getElementById('inputInvalid').innerText=error;
+
+                    document.getElementById('inputInvalid').style.display='block';
+                    document.getElementById('inputValid').style.display='none';
+                });
+                
+                document.getElementById('inputValid').style.display='block';
+                document.getElementById('inputInvalid').style.display='none';
+
+                emptyAllField();
+                window.location.reload(true); 
+            }
+            else
+            {
+                document.getElementById('inputInvalid').style.display='block';
+                document.getElementById('inputValid').style.display='none';
+            }
+        })
+        
+    </script>
+    
+</body>
+</html>
+
+
+<!-- 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 -->
