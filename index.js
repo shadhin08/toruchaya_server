@@ -1,4 +1,4 @@
-require("dotenv").config();
+// require("dotenv").config();
 const express = require('express')
 var cors = require('cors')
 var bodyParser = require('body-parser');
@@ -11,7 +11,7 @@ console.log(process.env.PORT, process.env.DB_USER, process.env.DB_PASS)
 
 const port = process.env.PORT || 3000;
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jtktn7s.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://sh08:helpme08@cluster0.jtktn7s.mongodb.net/?retryWrites=true&w=majority`;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const ObjectID=require('mongodb').ObjectId;
 
